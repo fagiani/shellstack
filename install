@@ -13,4 +13,5 @@ if [ -e $RECIPES_PATH ] ; then
 fi
 
 source "$ROOT_PATH/shellstack.sh"
+exec > "$ROOT_PATH/shellstack.log"
 install_`echo $1`

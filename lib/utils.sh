@@ -6,15 +6,15 @@
 
 function log {
 	if [ ! -n "$1" ]; then
-		echo "log() requires text string as its argument"
+		log "log() requires text string as its argument"
 		return 1;
 	fi
-        echo "`date '+%D %T'` -  $1"
+        echo "`date '+%D %T'` -  $1" 1>&2
 }
 
 function ask {
 	if [ ! -n "$1" ]; then
-		echo "ask() requires a question to ask"
+		log "ask() requires a question to ask"
 		return 1;
 	fi
 	read -p "$1 " ANSWER
