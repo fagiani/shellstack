@@ -1,13 +1,15 @@
 #!/bin/bash
 
+ROOT_PATH=$(dirname $(readlink -f $0))
+
 if [ ! -n "$1" ]; then
 	echo "Usage: ./install <recipe>"
 	exit 1;
 fi
 
 if [ -e recipes/$1 ] ; then
-	source "recipes/$1"
+	source "$ROOT_PATH/recipes/$1"
 fi
 
-source "shellstack.sh"
+source "$ROOT_PATH/shellstack.sh"
 install_`echo $1`

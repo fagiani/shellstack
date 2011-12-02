@@ -1,12 +1,12 @@
 #!/bin/bash
+source "$ROOT_PATH/recipes/basic"
 
 function defaults_wordpress {
 	DATABASE_PASSWORD="mydbs3cr3t"
 }
 
 function install_wordpress {
-	source "recipes/general"
-	install_general
+	install_basic
 	install_mysql $DATABASE_PASSWORD && tune_mysql 40
 	install_memcached
 	install_nginx
