@@ -11,7 +11,7 @@ function defaults_basic {
 function install_basic {
 	upgrade_system
 	install_essentials
-	set_hostname $NEW_HOST_NAME
+	set_hostname $HOST_NAME
 	update_locale_en_US_UTF_8
 	create_deploy_user $USER_NAME $USER_PASSWORD "$USER_SSH_KEY"
 	set_basic_security

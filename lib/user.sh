@@ -5,7 +5,7 @@ function create_deploy_user {
         #$2 - PASSWORD
         #$3 - SSHKEY
 	add_user $1 $2 "users,sudo"
-	add_ssh_key $1 $3
+	add_ssh_key $1 "$3"
 }
 
 function user_home {
