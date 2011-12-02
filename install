@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ! -n "$1" ]; then
+	echo "Usage: ./install <recipe>"
+	exit 1;
+fi
+
+if [ -e recipes/$1 ] ; then
+	source "recipes/$1"
+fi
+
+source "shellstack.sh"
+install_`echo $1`

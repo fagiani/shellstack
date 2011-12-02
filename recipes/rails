@@ -1,0 +1,22 @@
+#!/bin/bash
+
+function defaults_rails {
+  DATABASE_PASSWORD="mydbs3cr3t"
+}
+
+function install_rails {
+	source "recipes/general"
+	install_general
+        install_ruby
+	install_nodejs
+	create_gemrc
+	update_rubygems
+	install_passenger_with_nginx
+        set_rails_production_environment
+	install_bundler
+	install_bluepill
+	install_mysql $DATABASE_PASSWORD
+        tune_mysql 40
+	install_redis
+	restart_services
+}
