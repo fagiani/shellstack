@@ -7,8 +7,9 @@ if [ ! -n "$1" ]; then
 	exit 1;
 fi
 
-if [ -e recipes/$1 ] ; then
-	source "$ROOT_PATH/recipes/$1"
+RECIPES_PATH="$ROOT_PATH/recipes/$1"
+if [ -e $RECIPES_PATH ] ; then
+	source "$RECIPES_PATH"
 fi
 
 source "$ROOT_PATH/shellstack.sh"
