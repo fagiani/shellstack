@@ -19,5 +19,5 @@ Thanks
 -----
 
 [Linode StackScripts](http://linode.com/stackscripts)
-[Eric Bishop](http://github.com/ericpaulbishop)
 
+[Eric Bishop](http://github.com/ericpaulbishop)
