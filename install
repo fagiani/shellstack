@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ROOT_PATH=$(dirname $(readlink -f $0))
+LIB_PATH="$ROOT_PATH/lib"
 
 if [ ! -n "$1" ]; then
 	echo "Usage: ./install <recipe>"
@@ -12,5 +13,4 @@ if [ -e $RECIPES_PATH ] ; then
 	source "$RECIPES_PATH"
 fi
 
-source "$ROOT_PATH/shellstack.sh"
 install_`echo $1`
