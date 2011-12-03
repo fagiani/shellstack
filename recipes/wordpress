@@ -9,7 +9,7 @@ function install_wordpress {
 	install_basic
 	install_mysql $DATABASE_PASSWORD && tune_mysql 40
 	install_memcached
+	install_varnish
 	install_nginx
 	install_php5_fpm
-	install_varnish
 }

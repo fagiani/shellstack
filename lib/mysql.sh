@@ -4,7 +4,7 @@
 # mysql-server
 ###########################################################
 
-function mysql_install {
+function install_mysql {
 	# $1 - the mysql root password
 
 	if [ ! -n "$1" ]; then
@@ -20,7 +20,7 @@ function mysql_install {
 	sleep 5
 }
 
-function mysql_tune {
+function tune_mysql {
 	# Tunes MySQL's memory usage to utilize the percentage of memory you specify, defaulting to 40%
 	# $1 - the percent of system memory to allocate towards MySQL
 
@@ -56,7 +56,7 @@ function mysql_tune {
 	/etc/init.d/mysql restart
 }
 
-function mysql_create_database {
+function create_mysql_database {
 	# $1 - the mysql root password
 	# $2 - the db name to create
 
@@ -72,7 +72,7 @@ function mysql_create_database {
 	echo "CREATE DATABASE $2;" | mysql -u root -p$1
 }
 
-function mysql_create_user {
+function create_mysql_user {
 	# $1 - the mysql root password
 	# $2 - the user to create
 	# $3 - their password
@@ -93,7 +93,7 @@ function mysql_create_user {
 	echo "CREATE USER '$2'@'localhost' IDENTIFIED BY '$3';" | mysql -u root -p$1
 }
 
-function mysql_grant_user {
+function grant_mysql_user {
 	# $1 - the mysql root password
 	# $2 - the user to bestow privileges
 	# $3 - the database

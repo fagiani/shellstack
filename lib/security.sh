@@ -5,6 +5,7 @@
 #################################
 
 function set_basic_security {
+        log "Setting up basic security..."
 	install_fail2ban
 	install_ufw
 	basic_ufw_setup
@@ -24,7 +25,7 @@ function install_ufw {
 
 function basic_ufw_setup {
     # see https://help.ubuntu.com/community/UFW
-    ufw logging on    
+    ufw logging on
     ufw default deny
     ufw allow ssh
     ufw allow http
