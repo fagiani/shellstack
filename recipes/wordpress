@@ -16,6 +16,5 @@ function install_wordpress {
 	install_memcached
 	install_varnish
 	install_nginx
-        install_fcgiwrap
 	install_php5_fpm
 }

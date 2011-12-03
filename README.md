@@ -21,6 +21,11 @@ You can just source `shellstack.sh` file to source all the script files and call
 
 `./install <recipe>`
 
+Motivation
+-----
+
+As a big [Linode](http://linode.com) fan, and understanding that their StackScript platform is too simple to keep complex scripts on a form field I decided to organize things better with a git project with good file separation and keep a bare minimum of scripting inside the StackScript just to clone the git repository and fire installation. You can find the scripts [here](http://www.linode.com/stackscripts/browse/?ss_keyword=fagiani)
+
 Contributing
 -----
 
