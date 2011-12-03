@@ -7,6 +7,7 @@
 function install_mysql {
 	# $1 - the mysql root password
 
+        log "Installing MySQL..."
 	if [ ! -n "$1" ]; then
 		echo "mysql_install() requires the root password as its first argument"
 		return 1;
@@ -24,6 +25,7 @@ function tune_mysql {
 	# Tunes MySQL's memory usage to utilize the percentage of memory you specify, defaulting to 40%
 	# $1 - the percent of system memory to allocate towards MySQL
 
+        log "Tunning MySQL up..."
 	if [ ! -n "$1" ];
 		then PERCENT=40
 		else PERCENT="$1"

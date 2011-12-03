@@ -5,11 +5,13 @@
 #################################
 
 function install_fcgiwrap {
+        log "Installing fcgiwrap..."
 	aptitude install -y psmisc libfcgi-perl fcgiwrap
 	/etc/init.d/fcgiwrap start
 }
 
 function install_nginx {
+        log "Installing nginx..."
 	aptitude install -y nginx
 }
 

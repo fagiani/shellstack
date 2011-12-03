@@ -1,6 +1,7 @@
 #!/bin/bash
 
 function install_php5_fpm {
+        log "Installing PHP5 FPM..."
 	mkdir -p /var/www
 	aptitude -y install php5-fpm php5-curl php5-mysql php5-memcache php-apc php5-pgsql php5-common php5-suhosin php5-cli php5-imagick
 
