@@ -12,7 +12,7 @@ function install_nginx {
 function create_nginx_wordpress_site {
   #$1 - server name
   log "Creating nginx config file for wordpress site $1..."
-  cat > /etc/nginx/conf.d/wordpress << EOF
+  echo > /etc/nginx/sites-available/wordpress << EOF
 server {
     listen       8080;
     server_name  $1;
@@ -174,10 +174,9 @@ function disable_nginx_site
 
 function nginx_delete_site
 {
-	local server_id="$1"
-	rm -rf "$NGINX_CONF_PATH/sites-enabled/$server_id"
-	rm -rf "$NGINX_CONF_PATH/sites-available/$server_id"
-	rm -rf "$NGINX_PREFIX/$server_id"
+        #$1 - site name
+	rm -rf "/etc/nginx/sites-enabled/$1"
+	rm -rf "/etc/nginx/sites-available/$1"
 	/etc/init.d/nginx restart
 }
 
