@@ -7,14 +7,27 @@ source "$LIB_PATH/nginx.sh"
 source "$LIB_PATH/php.sh"
 
 function defaults_wordpress {
-	DATABASE_PASSWORD="mydbs3cr3t"
+	MYSQL_ROOT_PASSWORD="mydbs3cr3t"
+        DOMAIN="mydomain.com"
+        WP_MYSQL_USERNAME='myuser'
+        WP_MYSQL_PASSWORD='mydbs3cr3t'
+        WP_DATABASE_NAME='mydb_wp'
+        WP_USERNAME='myuser'
+        WP_PASSWORD='mys3cr3t'
+        WP_EMAIL='my@email.com'
+        WP_PUBLIC_BLOG=1
 }
 
 function install_wordpress {
 	install_basic
-	install_mysql $DATABASE_PASSWORD && tune_mysql 40
+	install_mysql $MYSQL_ROOT_PASSWORD && tune_mysql 40
 	install_memcached
 	install_varnish
 	install_nginx
 	install_php5_fpm
+        setup_php5_fpm_with_nginx
+        create_nginx_wordpress_site $DOMAIN
+        enable_nginx_site wordpress
+        disable_nginx_site default
+        install_wordpress $MYSQL_ROOT_PASSWORD $WP_MYSQL_USERNAME $WP_MYSQL_PASSWORD $WP_DATABASE_NAME $DOMAIN $WP_USERNAME $WP_PASSWORD $WP_EMAIL $WP_PUBLIC_BLOG
 }

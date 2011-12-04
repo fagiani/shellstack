@@ -9,6 +9,41 @@ function install_nginx {
 	aptitude install -y nginx
 }
 
+function create_nginx_wordpress_site {
+  #$1 - server name
+  log "Creating nginx config file for wordpress site $1..."
+  cat > /etc/nginx/conf.d/wordpress << EOF
+server {
+    listen       8080;
+    server_name  $1;
+    root         /var/www/wordpress;
+
+    index index.php;
+
+    access_log /var/log/nginx/$1-access_log;
+    error_log /var/log/nginx/$1-error_log;
+
+    location / {
+        try_files \$uri \$uri/ /index.php?\$args;
+    }
+
+    location ~ \.php$ {
+        try_files \$uri =404;
+        fastcgi_index index.php;
+        fastcgi_pass php5-fpm-sock;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+
+    rewrite ^.*/files/(.*)$ /wp-includes/ms-files.php?file=\$1 last;'
+    if (!-e \$request_filename)
+    {
+	rewrite  ^(.+)$ /index.php?q=\$1 last;
+    }
+}
+EOF
+}
+
 function nginx_create_site
 {
 	local server_id="$1"
@@ -123,18 +158,17 @@ EOF
 
 }
 
-function nginx_ensite
-{
-	local server_id="$1"
-	rm -rf "$NGINX_CONF_PATH/sites-enabled/$server_id"
-	ln -s "$NGINX_CONF_PATH/sites-available/$server_id" "$NGINX_CONF_PATH/sites-enabled/$server_id"
+function enable_nginx_site {
+        #$1 - site name
+	log "Enabling nginx site $1..."
+	ln -s "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
 	/etc/init.d/nginx restart
 }
 
-function nginx_dissite
+function disable_nginx_site
 {
-	local server_id="$1"
-	rm -rf "$NGINX_CONF_PATH/sites-enabled/$server_id"
+        #$1 - site name
+	rm -rf "/etc/nginx/sites-enabled/$1"
 	/etc/init.d/nginx restart
 }
 

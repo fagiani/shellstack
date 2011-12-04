@@ -7,7 +7,7 @@ function install_php5_fpm {
 
 	php_fpm_conf_file=`grep -R "^listen.*=.*127" /etc/php5/fpm/* | sed 's/:.*$//g' | uniq | head -n 1`
 	#sockets > ports. Using the 127.0.0.1:9000 stuff needlessly introduces TCP/IP overhead.
-	sed -i 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/'  $php_fpm_conf_file
+	sed -i 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/'  $php_fpm_conf_file
 
 	#sockets limited by net.core.somaxconn and listen.backlog to 128 by default, so increase this
 	#see http://www.saltwaterc.eu/nginx-php-fpm-for-high-loaded-websites.html
@@ -18,4 +18,12 @@ function install_php5_fpm {
 	#set max requests to deal with any possible memory leaks
 	sed -i 's/^.*pm.max_requests.*$/pm.max_requests = 1024/g'              $php_fpm_conf_file
 	/etc/init.d/php5-fpm restart
+}
+
+function setup_php5_fpm_with_nginx {
+  cat > /etc/nginx/conf.d/php5-fpm.conf << EOF
+upstream php5-fpm-sock {
+server unix:/var/run/php5-fpm.sock;
+}
+EOF
 }

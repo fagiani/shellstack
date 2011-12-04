@@ -40,11 +40,9 @@ function tune_mysql {
 	# mysql config options we want to set to the percentages in the second list, respectively
 	OPTLIST=(key_buffer sort_buffer_size read_buffer_size read_rnd_buffer_size myisam_sort_buffer_size query_cache_size)
 	DISTLIST=(75 1 1 1 5 15)
-
 	for opt in ${OPTLIST[@]}; do
 		sed -i -e "/\[mysqld\]/,/\[.*\]/s/^$opt/#$opt/" /etc/mysql/my.cnf
 	done
-
 	for i in ${!OPTLIST[*]}; do
 		val=$(echo | awk "{print int((${DISTLIST[$i]} * $MYMEMCHUNKS/100))*4}")
 		if [ $val -lt 4 ]
@@ -52,25 +50,22 @@ function tune_mysql {
 		fi
 		config="${config}\n${OPTLIST[$i]} = ${val}M"
 	done
-
 	sed -i -e "s/\(\[mysqld\]\)/\1\n$config\n/" /etc/mysql/my.cnf
-
 	/etc/init.d/mysql restart
 }
 
 function create_mysql_database {
 	# $1 - the mysql root password
 	# $2 - the db name to create
-
 	if [ ! -n "$1" ]; then
-		echo "mysql_create_database() requires the root pass as its first argument"
+		log "mysql_create_database() requires the root pass as its first argument"
 		return 1;
 	fi
 	if [ ! -n "$2" ]; then
-		echo "mysql_create_database() requires the name of the database as the second argument"
+		log "mysql_create_database() requires the name of the database as the second argument"
 		return 1;
 	fi
-
+        log "Creating database $2..."
 	echo "CREATE DATABASE $2;" | mysql -u root -p$1
 }
 
@@ -78,20 +73,19 @@ function create_mysql_user {
 	# $1 - the mysql root password
 	# $2 - the user to create
 	# $3 - their password
-
 	if [ ! -n "$1" ]; then
-		echo "mysql_create_user() requires the root pass as its first argument"
+		log "mysql_create_user() requires the root pass as its first argument"
 		return 1;
 	fi
 	if [ ! -n "$2" ]; then
-		echo "mysql_create_user() requires username as the second argument"
+		log "mysql_create_user() requires username as the second argument"
 		return 1;
 	fi
 	if [ ! -n "$3" ]; then
-		echo "mysql_create_user() requires a password as the third argument"
+		log "mysql_create_user() requires a password as the third argument"
 		return 1;
 	fi
-
+        log "Creating MySQL user $2..."
 	echo "CREATE USER '$2'@'localhost' IDENTIFIED BY '$3';" | mysql -u root -p$1
 }
 
@@ -99,20 +93,19 @@ function grant_mysql_user {
 	# $1 - the mysql root password
 	# $2 - the user to bestow privileges
 	# $3 - the database
-
 	if [ ! -n "$1" ]; then
-		echo "mysql_grant_user() requires the root pass as its first argument"
+		log "mysql_grant_user() requires the root pass as its first argument"
 		return 1;
 	fi
 	if [ ! -n "$2" ]; then
-		echo "mysql_grant_user() requires username as the second argument"
+		log "mysql_grant_user() requires username as the second argument"
 		return 1;
 	fi
 	if [ ! -n "$3" ]; then
-		echo "mysql_grant_user() requires a database as the third argument"
+		log "mysql_grant_user() requires a database as the third argument"
 		return 1;
 	fi
-
+        log "Granting MySQL user $2 all privileges to $3 database..."
 	echo "GRANT ALL PRIVILEGES ON $3.* TO '$2'@'localhost';" | mysql -u root -p$1
 	echo "FLUSH PRIVILEGES;" | mysql -u root -p$1
 }
