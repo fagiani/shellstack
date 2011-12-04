@@ -22,6 +22,17 @@ backend default {
 acl purge {
     "localhost";
 }
+sub vcl_recv {
+    if (req.request == "PURGE") {
+        if (!client.ip ~ purge) {
+            error 405 "Not allowed.";
+        }
+        return(lookup);
+    }
+    if (req.url ~ "^/$") {
+        unset req.http.cookie;
+    }
+}
 sub vcl_hit {
     if (req.request == "PURGE") {
         set obj.ttl = 0s;
@@ -56,6 +67,7 @@ EOF
   log "Ip address found: $IP_ADDRESS"
   sed -i "s/:6081/$IP_ADDRESS:80/" /etc/default/varnish
   sed -i "s/default.vcl/wordpress.vcl/" /etc/default/varnish
+  sed -i "s/-s malloc,100M/-s file,/var/lib/varnish/\$INSTANCE/varnish_storage.bin,1G/"
   /etc/init.d/varnish restart
   /etc/init.d/php5-fpm stop
   /etc/init.d/php5-fpm start
