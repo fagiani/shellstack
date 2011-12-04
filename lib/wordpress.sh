@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function install_wordpress {
+function install_wordpress_site {
         #$1 - MySQL root password
         #$2 - MySQL WordPress user
         #$3 - MySQL WordPress password

@@ -29,5 +29,5 @@ function install_wordpress {
         create_nginx_wordpress_site $WP_DOMAIN
         enable_nginx_site wordpress
         disable_nginx_site default
-        install_wordpress $MYSQL_ROOT_PASSWORD $WP_MYSQL_USERNAME $WP_MYSQL_PASSWORD $WP_DATABASE_NAME $WP_DOMAIN $WP_USERNAME $WP_PASSWORD $WP_EMAIL $WP_PUBLIC_BLOG
+        install_wordpress_site $MYSQL_ROOT_PASSWORD $WP_MYSQL_USERNAME $WP_MYSQL_PASSWORD $WP_DATABASE_NAME $WP_DOMAIN $WP_USERNAME $WP_PASSWORD $WP_EMAIL $WP_PUBLIC_BLOG
 }
