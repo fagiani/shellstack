@@ -63,7 +63,7 @@ function trigger_wordpress_installation {
         log "Triggering WordPress instalation procedure..."
 	php << EOF
 <?php
-  define( 'WP_SITEURL', '$1');
+  define( 'WP_SITEURL', 'http://$1');
   define( 'WP_INSTALLING', true );
   require_once( '/var/www/wordpress/wp-load.php' );
   require_once( '/var/www/wordpress/wp-admin/includes/upgrade.php' );
