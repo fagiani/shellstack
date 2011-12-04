@@ -7,7 +7,7 @@
 function install_varnish {
   log "Installing varnish..."
   aptitude install -y varnish
-  echo "apc.shm_size=100" >> /etc/php5/fpm/conf.d/apc.ini
+  echo "apc.shm_size=100M" >> /etc/php5/fpm/conf.d/apc.ini
   /etc/init.d/varnish restart
   /etc/init.d/nginx restart
 }

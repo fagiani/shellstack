@@ -10,7 +10,7 @@ function install_wordpress_site {
         #$7 - WP admin password
         #$8 - WP admin email
         #$9 - Public Blog? 0 - no | 1 - yes
-        "Intalling WordPress..."
+        log "Intalling WordPress..."
         download_and_unzip_wordpress
         create_wordpress_database_user_and_tables $2 $3 $4 $1
         setup_wordpress_configuration $2 $3 $4
@@ -19,8 +19,8 @@ function install_wordpress_site {
 
 function download_and_unzip_wordpress {
         log "Downloading and extracting WordPress..."
-	wget "http://wordpress.org/latest.tar.gz" -O /var/www
-	tar xfz /var/www/latest.tar.gz -C /var/www
+	wget "http://wordpress.org/latest.tar.gz" -O /var/www/wp-latest.tar.gz
+	tar xfz /var/www/wp-latest.tar.gz -C /var/www
 }
 
 function create_wordpress_database_user_and_tables {
@@ -63,11 +63,11 @@ function trigger_wordpress_installation {
         log "Triggering WordPress instalation procedure..."
 	php << EOF
 <?php
-  define( 'WP_SITEURL', '$1')
+  define( 'WP_SITEURL', '$1');
   define( 'WP_INSTALLING', true );
   require_once( '/var/www/wordpress/wp-load.php' );
   require_once( '/var/www/wordpress/wp-admin/includes/upgrade.php' );
-  require_once( '/var/www/wordpress/wp-includes/wp-db.php');
+  require_once( '/var/www/wordpress/wp-includes/wp-db.php' );
   wp_install('My WP Blog', $2, $4, $5, '', $3);
 ?>
 EOF
