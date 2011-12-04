@@ -5,6 +5,7 @@ source "$LIB_PATH/memcached.sh"
 source "$LIB_PATH/varnish.sh"
 source "$LIB_PATH/nginx.sh"
 source "$LIB_PATH/php.sh"
+source "$LIB_PATH/wordpress.sh"
 
 function defaults_wordpress {
 	MYSQL_ROOT_PASSWORD="mydbs3cr3t"
