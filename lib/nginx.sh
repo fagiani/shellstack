@@ -35,9 +35,8 @@ server {
         include /etc/nginx/fastcgi_params;
     }
 
-    rewrite ^.*/files/(.*)$ /wp-includes/ms-files.php?file=\$1 last;'
-    if (!-e \$request_filename)
-    {
+    rewrite ^.*/files/(.*)$ /wp-includes/ms-files.php?file=\$1 last;
+    if (!-e \$request_filename) {
 	rewrite  ^(.+)$ /index.php?q=\$1 last;
     }
 }

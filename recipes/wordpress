@@ -26,6 +26,7 @@ function install_wordpress {
 	install_nginx
 	install_php5_fpm
 	install_varnish
+        setup_varnish_wordpress_vcl
         setup_php5_fpm_with_nginx
         create_nginx_wordpress_site $WP_DOMAIN
         enable_nginx_site wordpress
