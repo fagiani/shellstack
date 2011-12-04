@@ -68,7 +68,7 @@ EOF
   sed -i "s/:6081/$IP_ADDRESS:80/" /etc/default/varnish
   sed -i "s/default.vcl/wordpress.vcl/" /etc/default/varnish
   sed -i "s/malloc,256m/file,\/var\/lib\/varnish\/\$INSTANCE\/varnish_storage.bin,1G/" /etc/default/varnish
-  /etc/init.d/varnish restart
+  /etc/init.d/varnish start
   /etc/init.d/php5-fpm stop
   /etc/init.d/php5-fpm start
 }
