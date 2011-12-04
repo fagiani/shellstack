@@ -68,7 +68,7 @@ function trigger_wordpress_installation {
   require_once( '/var/www/wordpress/wp-load.php' );
   require_once( '/var/www/wordpress/wp-admin/includes/upgrade.php' );
   require_once( '/var/www/wordpress/wp-includes/wp-db.php' );
-  wp_install('My WP Blog', $2, $4, $5, '', $3);
+  wp_install('My WP Blog', $2, "$4", $5, '', $3);
 ?>
 EOF
 }
