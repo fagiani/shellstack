@@ -22,9 +22,9 @@ function install_wordpress {
 	install_basic
 	install_mysql $MYSQL_ROOT_PASSWORD && tune_mysql 40
 	install_memcached
-	install_varnish
 	install_nginx
 	install_php5_fpm
+	install_varnish
         setup_php5_fpm_with_nginx
         create_nginx_wordpress_site $WP_DOMAIN
         enable_nginx_site wordpress
