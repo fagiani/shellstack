@@ -9,7 +9,7 @@ function install_mysql {
 
         log "Installing MySQL..."
 	if [ ! -n "$1" ]; then
-		echo "mysql_install() requires the root password as its first argument"
+		log "mysql_install() requires the root password as its first argument"
 		return 1;
 	fi
 
@@ -113,15 +113,15 @@ function grant_mysql_user {
 function backup_mysql
 {
 	if [ ! -n "$1" ]; then
-		echo "backup_mysql() requires the database user as its first argument"
+		log "backup_mysql() requires the database user as its first argument"
 		return 1;
 	fi
 	if [ ! -n "$2" ]; then
-		echo "backup_mysql) requires the database password as its second argument"
+		log "backup_mysql) requires the database password as its second argument"
 		return 1;
 	fi
 	if [ ! -n "$3" ]; then
-		echo "backup_mysql() requires the output file path as its third argument"
+		log "backup_mysql() requires the output file path as its third argument"
 		return 1;
 	fi
 	local USER="$1"
@@ -150,15 +150,15 @@ function backup_mysql
 function restore_mysql
 {
 	if [ ! -n "$1" ]; then
-		echo "restore_mysql() requires the database user as its first argument"
+		log "restore_mysql() requires the database user as its first argument"
 		return 1;
 	fi
 	if [ ! -n "$2" ]; then
-		echo "restore_mysql) requires the database password as its second argument"
+		log "restore_mysql) requires the database password as its second argument"
 		return 1;
 	fi
 	if [ ! -n "$3" ]; then
-		echo "restore_mysql() requires the backup directory as its third argument"
+		log "restore_mysql() requires the backup directory as its third argument"
 		return 1;
 	fi
 

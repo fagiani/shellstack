@@ -25,7 +25,7 @@ function set_hostname
 function backup_hostname
 {
 	if [ ! -n "$1" ]; then
-		echo "backup_hostname() requires the backup directory as its first argument"
+		log "backup_hostname() requires the backup directory as its first argument"
 		return 1;
 	fi
 
@@ -45,7 +45,7 @@ function backup_hostname
 function restore_hostname
 {
 	if [ ! -n "$1" ]; then
-		echo "restore_hostname() requires the backup directory as its first argument"
+		log "restore_hostname() requires the backup directory as its first argument"
 		return 1;
 	fi
 
@@ -65,7 +65,7 @@ function restore_hostname
 
 function system_ip
 {
-	# returns the IP assigned to first ethernet device
+        log "Discovering IP address to this box..."
 	dev=$(ifconfig | grep "Ethernet"  | awk ' { print $1 } ' | head -n 1)
 	if [ -z "$dev" ] ; then
 		echo $(ifconfig eth0 | awk -F: '/inet addr:/ {print $2}' | awk '{ print $1 }')

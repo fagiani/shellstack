@@ -7,7 +7,7 @@
 function install_varnish {
   log "Installing varnish..."
   aptitude install -y varnish
-  cat "apc.shm_size=100" >> /etc/php5/fpm/conf.d/apc.ini
+  echo "apc.shm_size=100" >> /etc/php5/fpm/conf.d/apc.ini
   /etc/init.d/varnish restart
   /etc/init.d/nginx restart
 }
@@ -53,6 +53,7 @@ sub vcl_fetch {
 }
 EOF
   IP_ADDRESS=$(system_ip)
+  log "Ip address found: $IP_ADDRESS"
   sed -i "s/:6081/$IP_ADDRESS:80/" /etc/default/varnish
   sed -i "s/default.vcl/wordpress.vcl/" /etc/default/varnish
   /etc/init.d/varnish restart

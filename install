@@ -8,9 +8,9 @@ if [ ! -n "$1" ]; then
 	exit 1;
 fi
 
-RECIPES_PATH="$ROOT_PATH/recipes/$1"
-if [ -e $RECIPES_PATH ] ; then
-	source "$RECIPES_PATH"
+RECIPE="$ROOT_PATH/recipes/$1"
+if [ -e $RECIPE ] ; then
+	source "$RECIPE"
 fi
 
 install_`echo $1`
