@@ -8,7 +8,7 @@ source "$LIB_PATH/php.sh"
 
 function defaults_wordpress {
 	MYSQL_ROOT_PASSWORD="mydbs3cr3t"
-        DOMAIN="mydomain.com"
+        WP_DOMAIN="mydomain.com"
         WP_MYSQL_USERNAME='myuser'
         WP_MYSQL_PASSWORD='mydbs3cr3t'
         WP_DATABASE_NAME='mydb_wp'
@@ -26,8 +26,8 @@ function install_wordpress {
 	install_nginx
 	install_php5_fpm
         setup_php5_fpm_with_nginx
-        create_nginx_wordpress_site $DOMAIN
+        create_nginx_wordpress_site $WP_DOMAIN
         enable_nginx_site wordpress
         disable_nginx_site default
-        install_wordpress $MYSQL_ROOT_PASSWORD $WP_MYSQL_USERNAME $WP_MYSQL_PASSWORD $WP_DATABASE_NAME $DOMAIN $WP_USERNAME $WP_PASSWORD $WP_EMAIL $WP_PUBLIC_BLOG
+        install_wordpress $MYSQL_ROOT_PASSWORD $WP_MYSQL_USERNAME $WP_MYSQL_PASSWORD $WP_DATABASE_NAME $WP_DOMAIN $WP_USERNAME $WP_PASSWORD $WP_EMAIL $WP_PUBLIC_BLOG
 }
