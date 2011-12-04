@@ -12,7 +12,7 @@ function install_nginx {
 function create_nginx_wordpress_site {
   #$1 - server name
   log "Creating nginx config file for wordpress site $1..."
-  echo > /etc/nginx/sites-available/wordpress << EOF
+  cat > /etc/nginx/sites-available/wordpress << EOF
 server {
     listen       8080;
     server_name  $1;

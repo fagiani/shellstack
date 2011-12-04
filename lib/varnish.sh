@@ -14,7 +14,7 @@ function install_varnish {
 
 function setup_varnish_wordpress_vcl {
   log "Setting up varnish wordpress.vcl..."
-  echo > /etc/varnish/wordpress.vcl << EOF
+  cat > /etc/varnish/wordpress.vcl << EOF
 backend default {
     .host = "127.0.0.1";
     .port = "8080";
