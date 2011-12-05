@@ -3,7 +3,7 @@
 function install_php5_fpm {
         log "Installing php5 fpm..."
 	mkdir -p /var/www
-	aptitude -y install php5-fpm php5-curl php5-mysql php5-memcache php-apc php5-pgsql php5-common php5-suhosin php5-cli php5-imagick
+	aptitude -y install php5-fpm php5-curl php5-mysql php5-memcache php-apc php5-pgsql php5-common php5-suhosin php5-cli php5-imagick php5-gd
 
 	php_fpm_conf_file=`grep -R "^listen.*=.*127" /etc/php5/fpm/* | sed 's/:.*$//g' | uniq | head -n 1`
 	#sockets > ports. Using the 127.0.0.1:9000 stuff needlessly introduces TCP/IP overhead.
