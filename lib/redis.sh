@@ -9,7 +9,7 @@ function install_redis {
   make install
   mkdir -p /var/lib/redis
   mkdir -p /var/log/redis
-  /usr/sbin/useradd --system --group --home-dir /var/lib/redis redis
+  /usr/sbin/useradd --system --user-group --home-dir /var/lib/redis redis
   chown redis.redis /var/lib/redis
   chown redis.redis /var/log/redis
   /usr/sbin/update-rc.d -f redis-server defaults
