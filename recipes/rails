@@ -33,7 +33,7 @@ function install_rails {
             install_mysql $DATABASE_PASSWORD && tune_mysql 40
             ;;
           pgsql)
-            install_pgsql $DATABASE_PASSWORD && tune_pgsql 30
+            install_postgresql $DATABASE_PASSWORD && tune_postgresql 30
             ;;
           *)
             install_mysql $DATABASE_PASSWORD && tune_mysql 40
