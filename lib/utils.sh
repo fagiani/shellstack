@@ -9,7 +9,7 @@ function log {
 		log "log() requires text string as its argument"
 		return 1;
 	fi
-        echo "`date '+%D %T'` -  $1" 1>&2
+        echo "`date '+%D %T'` -  $1"
 }
 
 function ask {
