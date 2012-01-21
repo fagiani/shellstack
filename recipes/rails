@@ -1,4 +1,12 @@
 #!/bin/bash
+source "$ROOT_PATH/recipes/basic"
+source "$LIB_PATH/ruby.sh"
+source "$LIB_PATH/nodejs.sh"
+source "$LIB_PATH/passenger.sh"
+source "$LIB_PATH/bluepill.sh"
+source "$LIB_PATH/redis.sh"
+source "$LIB_PATH/mysql.sh"
+source "$LIB_PATH/postgresql.sh"
 
 function defaults_rails {
   DATABASE_TYPE="mysql"
@@ -14,7 +22,6 @@ function defaults_rails {
 }
 
 function install_rails {
-	source "recipes/basic"
 	install_basic
         install_ruby
 	install_nodejs
