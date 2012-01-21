@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function postgresql_install
+function install_postgresql
 {
 	aptitude -y install postgresql postgresql-contrib postgresql-dev postgresql-client libpq-dev
 	pg_conf=$(find /etc/ -name "pg_hba.conf" | head -n 1)
@@ -8,7 +8,7 @@ function postgresql_install
 	/etc/init.d/postgresql restart
 }
 
-function postgresql_tune
+function tune_postgresql
 {
 	# Tunes PostgreSQL's memory usage to utilize the percentage of memory you
 	# specify, defaulting to 30%
