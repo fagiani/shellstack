@@ -30,7 +30,7 @@ function upgrade_system {
 
 install_essentials() {
 	log "Installing Essentials..."
-	aptitude -y install build-essential zlib1g-dev libpcre3-dev libssl-dev libcurl4-openssl-dev libreadline5-dev libreadline6-dev libreadline-dev libxml2-dev libxslt1-dev libmysqlclient-dev openssh-server git-core wget vim less bash-completion curl rsync locate imagemagick
+	aptitude -y install build-essential zlib1g-dev libpcre3-dev libssl-dev libcurl4-openssl-dev libreadline5-dev libreadline6-dev libreadline-dev libxml2-dev libxslt1-dev libmysqlclient-dev openssh-server git-core wget vim less bash-completion curl rsync locate imagemagick libyaml-dev libffi-dev
 }
 
 enable_root_color_prompt() {
