@@ -14,10 +14,6 @@ function defaults_rails {
   R_ENV="production"
   RUBY_RELEASE="p290"
   REDIS_VERSION="2.2.4"
-  DEPLOY_USER="app"
-  DEPLOY_PASSWORD="myd3pl0ypwd"
-  DEPLOY_SSHKEY="ucm081u3c4083muc408312muc40832m1cu40832cmu40mcu41cm018cmu40218m"
-  NEW_HOSTNAME="appserver"
   BLUEPILL_CONFIG="/home/app/production/current/config/bluepill/production.pill"
 }
 
@@ -34,18 +30,14 @@ function install_rails {
 	install_redis
         case "$DATABASE_TYPE" in
           mysql)
-            install_mysql $DATABASE_PASSWORD
-            tune_mysql 40
+            install_mysql $DATABASE_PASSWORD && tune_mysql 40
             ;;
           pgsql)
-            install_pgsql $DATABASE_PASSWORD
-            tune_pgsql 30
+            install_pgsql $DATABASE_PASSWORD && tune_pgsql 30
             ;;
           *)
-            install_mysql $DATABASE_PASSWORD
-            tune_mysql 40
-            install_postgresql $DATABASE_PASSWORD
-            tune_postgresql 30
+            install_mysql $DATABASE_PASSWORD && tune_mysql 40
+            install_postgresql $DATABASE_PASSWORD && tune_postgresql 30
             ;;
         esac
 }
