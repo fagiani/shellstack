@@ -13,7 +13,7 @@ function tune_postgresql
 	# Tunes PostgreSQL's memory usage to utilize the percentage of memory you
 	# specify, defaulting to 30%
 	#
-	# $1 - the percent of system memory to allocate towards MySQL
+	# $1 - the percent of system memory to allocate towards PgSQL
 	if [ -z "$1" ] ; then
 		PERCENT=30
 	else
@@ -24,6 +24,7 @@ function tune_postgresql
 
 	pg_conf=$(find /etc/ -name "postgresql.conf" | head -n 1)
 	sed -i -e 's/^.*shared_buffers.*$/shared_buffers = '$PGMEM'MB/g' $pg_conf
+        #there is still need to increase SHMMAX at /proc/sys/kernel/shmmax in order to work but not sure on how much to automate
 	/etc/init.d/postgresql restart
 }
 
