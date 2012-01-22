@@ -12,9 +12,9 @@ function install_redis {
   /usr/sbin/useradd --system --user-group --home-dir /var/lib/redis redis
   chown redis.redis /var/lib/redis
   chown redis.redis /var/log/redis
-  /usr/sbin/update-rc.d -f redis-server defaults
   wget "https://github.com/ijonas/dotfiles/raw/master/etc/init.d/redis-server" -O /etc/init.d/redis-server
   chmod +x /etc/init.d/redis-server
+  /usr/sbin/update-rc.d -f redis-server defaults
   cat > /etc/redis.conf << EOF
 daemonize yes
 pidfile /var/run/redis.pid

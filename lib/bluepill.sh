@@ -5,7 +5,7 @@ function install_bluepill {
   echo "local6.* /var/log/bluepill.log" > /etc/rsyslog.d/bluepill.conf
   sed -i '/\/var\/log\/messages/i/var/log/bluepill.log' /etc/logrotate.d/rsyslog
   mkdir -p /var/bluepill/pids /var/bluepill/socks
-  echo "$DEPLOY_USER    ALL=(ALL) NOPASSWD:/usr/local/bin/bluepill" >> /etc/sudoers
+  echo "$USER_NAME    ALL=(ALL) NOPASSWD:/usr/local/bin/bluepill" >> /etc/sudoers
   cat > /etc/init.d/bluepill << EOF
 #!/bin/sh
 

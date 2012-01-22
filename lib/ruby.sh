@@ -27,7 +27,7 @@ update: --no-ri --no-rdoc --env-shebang
 update_sources: true
 EOF
   cp ~/.gemrc $USER_HOME
-  chown $DEPLOY_USER:$DEPLOY_USER $USER_HOME/.gemrc
+  chown $USER_NAME:$USER_NAME $USER_HOME/.gemrc
 }
 
 function update_rubygems {
