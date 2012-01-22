@@ -52,4 +52,5 @@ zset-max-ziplist-entries 128
 zset-max-ziplist-value 64
 activerehashing yes
 EOF
+  /etc/init.d/redis-server start
 }
