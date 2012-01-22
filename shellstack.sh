@@ -3,7 +3,6 @@
 ROOT_PATH=$(dirname $(readlink -f $0))
 LIB_PATH="$ROOT_PATH/lib"
 
-source "$LIB_PATH/constants.sh"
 source "$LIB_PATH/hostname.sh"
 source "$LIB_PATH/user.sh"
 source "$LIB_PATH/utils.sh"
