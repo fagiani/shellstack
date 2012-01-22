@@ -11,8 +11,8 @@ Recipes
 Although you can use ShellStack's files separately, it has some pre cooked recipes to expedite server setup. Currently there are basically three recipes:
 
 * basic - installs a current and secure basic box with some essential packages on it
-* wordpress - install a production ready WP environment for users that have heavy traffic needs (wip)
-* rails - installs a Ruby on Rails ready box based on Basic with production ready capabilities (wip)
+* wordpress - install a production ready WP environment for users that have heavy traffic needs
+* rails - installs a Ruby on Rails ready box based on Basic with production ready capabilities
 
 Usage
 -----
