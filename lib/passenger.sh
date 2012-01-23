@@ -31,7 +31,7 @@ function install_passenger_with_nginx {
                 fi; \
         endscript
         postrotate
-                [             ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`
+                [             ! -f /var/run/nginx.pid ] || kill -USR1 \`cat /var/run/nginx.pid\`
         endscriptript
 }
 EOF
