@@ -25,7 +25,6 @@ function install_rails {
 	update_rubygems
 	install_passenger_with_nginx
         set_rails_production_environment
-        set_default_nginx_config_with_passenger
 	install_bundler
 	install_bluepill
 	install_redis
