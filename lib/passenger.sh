@@ -12,9 +12,10 @@ function install_passenger_with_nginx {
   cp -r conf /etc/nginx
   make && make install
   wget "http://library.linode.com/assets/660-init-deb.sh" -O /etc/init.d/nginx
+  sed -i 's/\/opt\/nginx/\/usr\/local\/sbin/g'
   chmod +x /etc/init.d/nginx
   /usr/sbin/update-rc.d -f nginx defaults
-  mkdir -p /etc/nginx/conf.d /etc/nginx/sites-available /etc/nginx/sites-enabled
+  mkdir -p /var/log/nginx /etc/nginx/conf.d /etc/nginx/sites-available /etc/nginx/sites-enabled
   cat <<EOF > /etc/logrotate.d/nginx
 /var/log/nginx/*.log {
         daily
@@ -31,7 +32,7 @@ function install_passenger_with_nginx {
 }
 EOF
   cat <<EOF > /etc/nginx/conf.d/passenger.conf
-passenger_root /usr/lib/phusion-passenger;
+passenger_root /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.11;
 passenger_ruby /usr/local/bin/ruby;
 EOF
   cat <<EOF > /etc/nginx/nginx.conf
