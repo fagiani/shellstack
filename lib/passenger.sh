@@ -12,7 +12,7 @@ function install_passenger_with_nginx {
   cp -r conf /etc/nginx
   make && make install
   wget "http://library.linode.com/assets/660-init-deb.sh" -O /etc/init.d/nginx
-  sed -i 's/\/opt\/nginx/\/usr\/local\/sbin/g'
+  sed -i 's/\/opt\/nginx/\/usr\/local/g' /etc/init.d/nginx
   chmod +x /etc/init.d/nginx
   /usr/sbin/update-rc.d -f nginx defaults
   mkdir -p /var/log/nginx /etc/nginx/conf.d /etc/nginx/sites-available /etc/nginx/sites-enabled
