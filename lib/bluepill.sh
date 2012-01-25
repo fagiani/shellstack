@@ -31,7 +31,7 @@ test -x \$BLUEPILL_BIN || { echo "\$BLUEPILL_BIN not installed";
         else exit 5; fi; }
 
 # Check for existence of needed config file and read it
-BLUEPILL_CONFIG=$BLUEPILL_CONFIG
+BLUEPILL_CONFIG=/etc/bluepill.conf
 test -r \$BLUEPILL_CONFIG || { echo "\$BLUEPILL_CONFIG not existing";
         if [ "\$1" = "stop" ]; then exit 0;
         else exit 6; fi; }
@@ -59,4 +59,7 @@ esac
 EOF
   chmod +x /etc/init.d/bluepill
   /usr/sbin/update-rc.d -f bluepill defaults
+  cat > /etc/bluepill.conf << EOF
+#just include here in ruby language your bluepill config
+EOF
 }

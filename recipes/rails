@@ -14,7 +14,6 @@ function defaults_rails {
   R_ENV="production"
   RUBY_RELEASE="p290"
   REDIS_VERSION="2.2.4"
-  BLUEPILL_CONFIG="/home/app/production/current/config/bluepill/production.pill"
 }
 
 function install_rails {
