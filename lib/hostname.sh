@@ -65,7 +65,6 @@ function restore_hostname
 
 function system_ip
 {
-        log "Discovering IP address to this box..."
 	dev=$(ifconfig | grep "Ethernet"  | awk ' { print $1 } ' | head -n 1)
 	if [ -z "$dev" ] ; then
 		echo $(ifconfig eth0 | awk -F: '/inet addr:/ {print $2}' | awk '{ print $1 }')
