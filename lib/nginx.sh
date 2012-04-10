@@ -14,7 +14,7 @@ function create_nginx_wordpress_site {
   log "Creating nginx config file for wordpress site $1..."
   cat > /etc/nginx/sites-available/wordpress << EOF
 server {
-    listen       8080;
+    listen       80;
     server_name  $1;
     root         /var/www/wordpress;
 
